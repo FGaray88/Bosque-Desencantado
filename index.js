@@ -17,8 +17,7 @@ if(edad<18){
 res.innerHTML = ("Gracias por jugar")
 
 
-/* let password = prompt("Has ingresado en un laberinto infinito para salir escribe el numero 1234")
- */
+let password = prompt("Has ingresado en un laberinto infinito para salir escribe el numero 1234")
 
 
 if(password == 1234){
