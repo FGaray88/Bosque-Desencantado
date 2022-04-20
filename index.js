@@ -18,8 +18,7 @@ function capituloPrimero (t){
                 break;
             case "3":
                 let paso2 = prompt("Te encuentras una cabaña abandonada, luego de requisarla encuentras algo de comida y unas llaves 1: Comer | 2: Inspeccionar llaves | 3: Salir de la cabaña")
-                validarCabana(paso2)
-                
+                validarCabana(paso2) //Aqui avanzamos a la funcion validarCabana con el parametro 3 = validarCabana(3) - Esto es correcto??
                 break;
             case "4":
                 let pasoAlt1 = prompt("Te has topado con una espesa niebla, el camino parece volverse cada vez mas sinuoso 1: Volver | 2: Adentrarse en la niebla | 3: Buscar otro camino")
@@ -69,7 +68,7 @@ function capituloNiebla(){
 
 
 
-function validarCabana(Cab){
+function validarCabana(Cab){ 
     if(Cab==1){
         alert("Has ingerido la comida sin notar que estaba envenenada, comienzas a perder la nocion hasta que mueres")
     } else if (Cab==2){
@@ -83,9 +82,16 @@ function validarCabana(Cab){
                 validarCabana(Cab)
             }else {
                 alert("Opcion Incorrecta")
+                validarCabana(Cab)
             }
     } else if (Cab==3) {
         alert("FEAR BUILDS WALLS | tu propio miedo te impide salir de la cabaña")
+        let repe1 = prompt("Te encuentras una cabaña abandonada, luego de requisarla encuentras algo de comida y unas llaves 1: Comer | 2: Inspeccionar llaves | 3: Salir de la cabaña")
+        validarCabana(repe1) // esta rama no funciona, al llegar aqui el alert lo tira pero NO vuelve al menú
+    } else {
+        alert("Opcion Incorrecta")
+        let repe2 = prompt("Te encuentras una cabaña abandonada, luego de requisarla encuentras algo de comida y unas llaves 1: Comer | 2: Inspeccionar llaves | 3: Salir de la cabaña")
+        validarCabana(repe2) // esta rama funciona correctamente, al llegar aqui tira el alert y luego vuelve al menú
     }
 }
 
@@ -98,8 +104,7 @@ function capituloTercero(){
         } else {
             alert("no has ingresado el nombre")
             capituloTercero(true)
-        }
-    
+        }    
 }
 
 comienzo()
