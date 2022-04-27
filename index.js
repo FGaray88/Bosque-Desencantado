@@ -14,7 +14,7 @@ const arma3 = new arma ("Revolver", 100) */
 
 const inventario = []
 
-//comienzo()
+comienzo()
 
 
 
@@ -127,7 +127,6 @@ function intermedio(){
         }    
 }
 
-seleccionarArma()
 
 
 
