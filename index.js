@@ -15,7 +15,7 @@ comienzo()
 
 
 function comienzo (){
-    let paso1 = confirm("CAPITULO 1 - Has despertado en medio de un bosque desconocido en algun de la Argentina, es de noche y es invierno, no tienes nada mas que lo que llevas puesto. Podras escapar por tus propios metodos? Aceptar: Ser valiente | Cancelar: Apichonarse y pedir rescate")
+    let paso1 = confirm("CAPITULO 1 - Has despertado en medio de un bosque desconocido en algun lugar de la Argentina, es de noche y es invierno, no tienes nada mas que lo que llevas puesto. Podras escapar por tus propios metodos? Aceptar: Ser valiente | Cancelar: Apichonarse y pedir rescate")
     capituloPrimero(paso1)
 }
 
