@@ -76,7 +76,10 @@ function capituloNiebla(){
             alert("Encuentras un camino que te conduce al lugar donde estabas al comienzo")
             capituloPrimero(true)
             break;
-    }
+        default:
+            alert("Opcion incorrecta")
+            capituloNiebla()
+        }   
 }
 
 
@@ -152,6 +155,7 @@ function seleccionarArma(SA) {
         case "4":
             alert ("Ahora tienes todas las armas en tu inventario")
             alert("de repente se aparece el chapulin colorado de la nada y te devora al instante")
+            break;
         default:
             alert("debes elegir una opcion") 
             seleccionarArma(true)
