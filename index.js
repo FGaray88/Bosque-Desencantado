@@ -4,13 +4,9 @@ class arma{
         this.tipo = tipo;
         this.danio = parseInt(danio);
     }
-    valorDanio(){
-        this.danio = this.danio + 0;
-    }
 }
-/* const arma1 = new arma ("Cuchillo", 50)
-const arma2 = new arma ("Palo", 30)
-const arma3 = new arma ("Revolver", 100) */
+
+
 
 const inventario = []
 
@@ -19,7 +15,7 @@ comienzo()
 
 
 function comienzo (){
-    let paso1 = confirm("Has despertado en medio de un bosque desconocido, es de noche y es invierno, no tienes nada mas que lo que llevas puesto. Podras escapar por tus propios metodos? Aceptar: Ser valiente | Cancelar: Apichonarse y pedir rescate")
+    let paso1 = confirm("CAPITULO 1 - Has despertado en medio de un bosque desconocido en algun de la Argentina, es de noche y es invierno, no tienes nada mas que lo que llevas puesto. Podras escapar por tus propios metodos? Aceptar: Ser valiente | Cancelar: Apichonarse y pedir rescate")
     capituloPrimero(paso1)
 }
 
@@ -61,7 +57,8 @@ function validarNiebla(n){
         capituloPrimero(true)
     }else {
         alert("Opcion incorrecta")
-        capituloPrimero(true)
+        let pasoAlt2 = prompt("Te has topado con una espesa niebla, el camino parece volverse cada vez mas sinuoso 1: Volver | 2: Adentrarse en la niebla | 3: Buscar otro camino")
+        validarNiebla(pasoAlt2)
     }
 }
             
@@ -116,10 +113,11 @@ function validarCabana(Cab){
 
 
 function intermedio(){
-    alert("..Luego de unos minutos abres los ojos. Estas sentado y atado a una silla, y el hombre que te atacó esta de pie delante de ti")
+    alert("Has avanzado al siguiente capitulo")
+    alert("CAPITULO 2 - ..Luego de unos minutos abres los ojos. Estas sentado y atado a una silla, y el hombre que te atacó esta de pie delante de ti")
     let nombre = prompt("Te mira fijamente a los ojos y es entonces cuando pronuncia las palabras mágicas: Como te llamas?")
         if(nombre){
-            alert("Hola "+nombre+" Estas aquí atrapado, FALTA TEXTO") 
+            alert("Hola "+nombre+" Estas aquí, atrapado en tus propios pensamientos y no podras salir solo, por eso decidí ayudarte, como estabas muy nervioso tuve que golpearte y atarte a esta silla, pero ahora que te has tranquilizado te liberaré y te daré mi ayuda. Te regalaré una de mis armas que podrán serte de utilidad en el futuro, pero solo puedes elegir una") 
             seleccionarArma()
         } else {
             alert("no has ingresado el nombre")
@@ -130,24 +128,25 @@ function intermedio(){
 
 
 
+
+
 function seleccionarArma(SA) {
     let elegirArma = prompt("Elige entre estas armas 1: Cuchillo | 2: Palo | 3: Revolver")
+    
     switch (elegirArma) {
         case "1":
             inventario.push(new arma ("Cuchillo", "50"))
-            console.log(arma.danio)
-            /* alert ("Ahora tienes un Cuchillo capaz de causar un daño del 50% en tu inventario") */
+            alert ("Ahora tienes un "+inventario[0].tipo+" capaz de causar un daño del "+inventario[0].danio+"% en tu inventario")
             capituloTercero()
             break;
-
         case "2":
-            inventario.push({arma2})
-            alert ("Ahora tienes un "+arma2.tipo+" capaz de causar un daño del "+arma2.dano+"% en tu inventario")
+            inventario.push(new arma ("Palo", "30"))
+            alert ("Ahora tienes un "+inventario[0].tipo+" capaz de causar un daño del "+inventario[0].danio+"% en tu inventario")
             capituloTercero()
             break;
         case "3":
-            inventario.push({arma3})
-            alert ("Ahora tienes un "+arma3.tipo+" capaz de causar un daño del "+arma3.dano+"% en tu inventario")
+            inventario.push(new arma ("Revolver", "100"))
+            alert ("Ahora tienes un "+inventario[0].tipo+" capaz de causar un daño del "+inventario[0].danio+"% en tu inventario")
             capituloTercero()
             break;
         case "4":
@@ -164,7 +163,8 @@ function seleccionarArma(SA) {
 
 
 function capituloTercero(c3) {
-    let opcionPaso1C3 = prompt("Ya estas fuera de la cabaña, otra vez con el bosque como destino, pero esta vez estas del otro lado y tienes 3 posibles caminos, cual eliges? 1: Camino de la derecha | 2: Camino de la Izquierda | 3: Camino siguiendo recto")
+    alert("Has avanzado al siguiente capitulo")
+    let opcionPaso1C3 = prompt("CAPITULO 3 - Ya estas fuera de la cabaña, otra vez con el bosque como destino, pero esta vez estas del otro lado y tienes 3 posibles caminos, cual eliges? 1: Camino de la derecha | 2: Camino de la Izquierda | 3: Camino siguiendo recto")
         switch (opcionPaso1C3){
             case "1": op1Paso2C3()
                 break;
@@ -195,26 +195,60 @@ function opcion1P3Cap3(p3c3){
 
 
 function batalla(){
-let energiaEnemigo = 10
-let numero = Math.ceil(Math.random()*100)
-// Esto podria hacerlo de diferentes maneras, pero aquí lo asigno a una variable. Lo que no estoy seguro es si estoy llamando bien a ese 50 que pretendo tener aqui
-console.log(inventario.valorDanio)
-let armaDanio = inventario.valorDanio
-let resGolpe = armaDanio+numero
-
-
-if(resGolpe>energiaEnemigo){
-    alert("Buen golpe, el impacto del le diste justo en el escudo de Nueva Chicago")
+let energiaEnemigo = 50
+let resGolpe = Math.ceil(Math.random()*100)+inventario[0].danio
+console.log(inventario[0].danio)
+console.log(resGolpe)
+    if(resGolpe>energiaEnemigo){
+    alert("Buen golpe, le diste justo en el escudo de Nueva Chicago")
     capituloCuatro()
     } else {
-    alert("Tus manos temblorosas no te permiten acertar el golpe y el monstruo calvo te implanta un chip de monitoreo que controla tus pensamientos, te vuelves capitalista y dedicas tu tiempo a trabajar en un banco por lo que resta de tu vida")
+    alert("Tus manos temblorosas no te permiten acertar el golpe y el monstruo calvo te implanta un chip de monitoreo que controla tus pensamientos, te vuelves capitalista y te pasas el resto de tu vida trabajando en el Banco Galicia")
     }
 }
 
 
+function op2Paso2C3(){
+    alert("Luego de caminar un rato te encuentras con un rio plagado de cocodrilos hambrientos, debes cruzar hacia el otro lado pero no se te ocurre la forma")
+    alert("-Oh! y ahora quien podrá ayudarme?- Dices tu")
+    let opcionesC3 = confirm("La version chilena del chapulin colorado acude a tu llamado, te explica la historia del bosque, te cuenta en detalle como hacer para escapar, incluso te da tips de como alcanzar el estado Zen, por desgracia el dialecto implementado por nuestro heroe trasandino resulta inentendible para ti | Aceptar: e la pelá de la wea pal andai del weon | Cancelar: A lapa choro de la weaa en el pololeo de la guagua")
+    if(opcionesC3){
+        alert("Agobiado de tanta informacion sin poder ser procesada le das un puñetazo al chapulin chileno justo arriba de la nariz, entre los ojos, es una lástima que era tu única oportunidad para escapar, quedas atrapado en el bosque por toda la eternidad")
+    } else {
+        alert("Recuerdas por fortuna que en tu infancia tuviste un amigo chileno que hablaba igual que el chapulin por lo cual logras descifrar solo algunas palabras que al conectarlas entre si entiendes que te esta diciendo que llego en un bote que puede servir para cruzar al otro ladio del rio")
+        let chapulin = confirm("Una vez cruzado el rio junto con el chapulin, este vuelve a pronunciarte unas palabras en chileno y tu reaccionas de la siguiente manera: Aceptar: Eres empático con el heroe y dejas que te acompañe lo que resta del camino | Cancelar: Entiendes que seguir en compañia del heroe puede atraer mas chilenos a tu vida y decides ahogarlo en el rio y seguir camino solo")
+            if(chapulin){
+                alert("A los pocos metros caminados se escucha un pitido que parece provenir del chapulin")
+                alert("Silencio! mis antenitas de vinil estan detectando la presencia del enemigo weon")
+                alert("El chapulin da un giro de 360° buscando al enemigo y al confundirse pensando que el enemigo eres tu, te parte el chipote chillón en la cabeza, mueres al instante, y si, la torpeza del chapulin no tiene límites geográficos")
+            } else {
+                alert("luego de ahogar al chapulin chileno en el rio sigues tu camino solo, no sin antes quedarte con su chipote chillón")
+                inventario.push(new arma ("Chipote Chillón", "5"))
+                alert ("Ahora tienes un "+inventario[1].tipo+" capaz de causar un daño del "+inventario[1].danio+"% en tu inventario")
+                capituloCuatro()
+                }
+            }
+}
+
+function op3Paso2C3(){
+    alert("El camino recto te lleva directo a un monte en donde parece haber una persona sentada con una guitarra en sus manos")
+    alert("Al acercarte mas, esta persona te cuenta sobre sus experiencias trabajando para un gorila pelado que comerciaba computadoras DELL y luego se llevaba los dolares a Uruguay dejando a nuestro querido pais en la mismisima miseria, pero que un dia se canso mandando todo a la mierda, y dedicandose a hacer musica para gente perdida en los bosques")
+    let cancion = confirm("Luego de quejarse de sus problemas durante 3 horas, esta persona te mira y te pregunta si quieres escuchar una cancion. Tu respuesta | Aceptar: Sentarte en una pierda a escuchar las melodías | Cancelar: Pasarte su música y su historia por la parte mas céntrica del conducto rectal y decirle que deje el boludeo para otro dia por que de momento te importa mas como salir del bosque")
+        if(cancion){
+            alert("Repentinamente comienza a escucharse unos aullidos como de gato no castrado y te preguntas que demonios es ese sonido tan extraño y horripilante")
+            alert(" Y si, era el nuevo hit compuesto por este musico misterioso, quien luego de interpretar su cancion nauseabunda te da un mapa del bosque, que resultará ser de gran ayuda")
+            inventario.push(new arma ("Mapa", "100"))
+            alert ("Ahora tienes un "+inventario[1].tipo+" capaz de causar un daño del "+inventario[1].danio+"% en tu inventario")
+            capituloCuatro()
+        } else {
+            alert("Ante tu indiferencia por su arte, el tipo se te enoja y te manda a los excrementos humanos al ritmo de 'Para el pueblo lo que es del pueblo' de Piero")
+            capituloCuatro()
+        }
+}
 
 function capituloCuatro(c4) {
-    alert("Capitulo 4: TE MUERES DE UN ATAQUE REPENTINO POR FALTA DE CONTINUIDAD EN LA HISTORIA")
+    alert("Has avanzado al siguiente capitulo")
+    alert("Capitulo 4 - TE MUERES DE UN ATAQUE REPENTINO POR FALTA DE CONTINUIDAD EN LA HISTORIA")
 }
 
 
