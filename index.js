@@ -62,7 +62,7 @@ function validarNiebla(n){
     }
 }
             
-function capituloNiebla(){
+function capituloNiebla(cN){
     let pasoNiebla = prompt("Has cruzado al otro lado de la niebla y te encuentras un vehiculo con un neumatico desinflado 1: Cambiar neumatico | 2: Entrar en el vehículo | 3: Seguir avanzando")
     switch(pasoNiebla){
         case "1": 
@@ -78,7 +78,7 @@ function capituloNiebla(){
             break;
         default:
             alert("Opcion incorrecta")
-            capituloNiebla()
+            capituloNiebla(cN)
         }   
 }
 
