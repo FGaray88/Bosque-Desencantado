@@ -8,6 +8,7 @@ class arma{
 
 
 
+
 const inventario = []
 
 comienzo()
@@ -165,7 +166,6 @@ function seleccionarArma(SA) {
 
 
 
-
 function capituloTercero(c3) {
     alert("Has avanzado al siguiente capitulo")
     let opcionPaso1C3 = prompt("CAPITULO 3 - Ya estas fuera de la cabaña, otra vez con el bosque como destino, pero esta vez estas del otro lado y tienes 3 posibles caminos, cual eliges? 1: Camino de la derecha | 2: Camino de la Izquierda | 3: Camino siguiendo recto")
@@ -183,6 +183,7 @@ function capituloTercero(c3) {
 }
 
 function op1Paso2C3(op1){
+    imagen.innerHTML = `<img src="./images/oso.jpg" alt="larreta">`;
     let armaElegida = confirm("Te encuentras con un oso gigante que tiene la cara de Horacio Rodriguez Larreta y el escudo de Nueva Chicago en uno de sus hombros, no te queda otra que atacar, que decides hacer? Aceptar: Utilizar arma del inventario | Cancelar: Salir corriendo al grito de 'Pelado Boton!'")
     opcion1P3Cap3(armaElegida)
 }
@@ -213,6 +214,7 @@ console.log(resGolpe)
 
 
 function op2Paso2C3(){
+    imagen.innerHTML = `<img src="./images/chapulin.jpg" alt="chapulin">`;
     alert("Luego de caminar un rato te encuentras con un rio plagado de cocodrilos hambrientos, debes cruzar hacia el otro lado pero no se te ocurre la forma")
     alert("-Oh! y ahora quien podrá ayudarme?- Dices tu")
     let opcionesC3 = confirm("La version chilena del chapulin colorado acude a tu llamado, te explica la historia del bosque, te cuenta en detalle como hacer para escapar, incluso te da tips de como alcanzar el estado Zen, por desgracia el dialecto implementado por nuestro heroe trasandino resulta inentendible para ti | Aceptar: e la pelá de la wea pal andai del weon | Cancelar: A lapa choro de la weaa en el pololeo de la guagua")
@@ -235,6 +237,7 @@ function op2Paso2C3(){
 }
 
 function op3Paso2C3(){
+    imagen.innerHTML = `<img src="./images/musico.jpg" alt="musico">`;
     alert("El camino recto te lleva directo a un monte en donde parece haber una persona sentada con una guitarra en sus manos")
     alert("Al acercarte mas, esta persona te cuenta sobre sus experiencias trabajando para un gorila pelado que comerciaba computadoras DELL y luego se llevaba los dolares a Uruguay dejando a nuestro querido pais en la mismisima miseria, pero que un dia se canso mandando todo a la mierda, y dedicandose a hacer musica para gente perdida en los bosques")
     let cancion = confirm("Luego de quejarse de sus problemas durante 3 horas, esta persona te mira y te pregunta si quieres escuchar una cancion. Tu respuesta | Aceptar: Sentarte en una pierda a escuchar las melodías | Cancelar: Pasarte su música y su historia por la parte mas céntrica del conducto rectal y decirle que deje el boludeo para otro dia por que de momento te importa mas como salir del bosque")
@@ -242,7 +245,7 @@ function op3Paso2C3(){
             alert("Repentinamente comienza a escucharse unos aullidos como de gato no castrado y te preguntas que demonios es ese sonido tan extraño y horripilante")
             alert(" Y si, era el nuevo hit compuesto por este musico misterioso, quien luego de interpretar su cancion nauseabunda te da un mapa del bosque, que resultará ser de gran ayuda")
             inventario.push(new arma ("Mapa", "100"))
-            alert ("Ahora tienes un "+inventario[1].tipo+" capaz de causar un daño del "+inventario[1].danio+"% en tu inventario")
+            alert ("Ahora tienes un "+inventario[1].tipo+" en tu inventario")
             capituloCuatro()
         } else {
             alert("Ante tu indiferencia por su arte, el tipo se te enoja y te manda a los excrementos humanos al ritmo de 'Para el pueblo lo que es del pueblo' de Piero")
@@ -255,5 +258,16 @@ function capituloCuatro(c4) {
     alert("Capitulo 4 - TE MUERES DE UN ATAQUE REPENTINO POR FALTA DE CONTINUIDAD EN LA HISTORIA")
 }
 
+const mensaje = ["Gracias por jugar","Gracias proximamente mas capitulos","Gracias hasta la próxima"]
 
-res.innerHTML = ("Gracias por jugar")
+
+
+
+let numMensaje = Math.ceil(Math.random()*100)
+if(numMensaje<=33){
+    res.innerHTML = mensaje[0]
+} else if (numMensaje>33 && numMensaje<=66) {
+    res.innerHTML = mensaje[1]
+} else {
+    res.innerHTML = mensaje[2]
+}
