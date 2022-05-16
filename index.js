@@ -16,14 +16,73 @@ const inventario = []
 /* const btnJugar = document.querySelector("#btnJugar")
 const btnSalir = document.querySelector("#btnSalir") */
 const imagen1 = document.querySelector("#imagen")
+let nombre = localStorage.getItem("nombre")
+
+
+validarNombre()
+//comienzo()
 
 
 
-comienzo()
+
+
 
 
 /* imagen1.setAttribute('src', "./images/cabaña.jpg")
 texto.innerHTML = "Un superheroe ha venido a tu rescate, por desgracia era el chapulin colorado y no ha sido de mucha ayuda, ambos mueren congelados" */
+
+
+
+
+function validarNombre(){   
+    if(nombre===null){
+        validarNombre2()
+    } else {
+        Principal()
+    }
+
+function Principal(){
+    imagen1.setAttribute('src', "./images/bosquenoche.jpg")
+
+    texto.innerHTML = "Hola "+nombre+" Quieres jugar otra vez?" 
+    botones.innerHTML = `<button id="btnReiniciar">y.. si no queda otra..</button>`
+    btnReiniciar.onclick = () => comienzo()
+
+}
+
+
+
+function validarNombre2(){
+    imagen1.setAttribute('src', "./images/bosquenoche.jpg")
+    texto.innerHTML = "Ingresa tu nombre para comenzar" 
+    botones.innerHTML = `<input type="text" id="nombre">
+                        <button id="btnTrue">Aceptar</button>`
+
+    btnTrue.onclick = () => nombreUser()
+
+}
+
+function nombreUser(){
+    let nombreUsuario = document.querySelector("#nombre")
+    localStorage.setItem("nombre", nombreUsuario.value)
+    let User = nombreUsuario.value
+    console.log(User)
+    if(User==""){
+        error()
+    } else {
+        comienzo()
+    }
+}
+
+function error(){
+    imagen1.setAttribute('src', "./images/bosquenoche.jpg")
+    texto.innerHTML = "Debes ingresar un nombre para comenzar el juego" 
+    botones.innerHTML = `<input type="text" id="nombre">
+                        <button id="btnTrue">Aceptar</button>`
+    btnTrue.onclick = () => nombreUser()
+}
+
+
 
 function comienzo (){
     imagen1.setAttribute('src', "./images/bosquenoche.jpg")
@@ -43,7 +102,6 @@ function comienzo (){
 
     function capituloPrimero (t){
     if(t){
-        imagen1.setAttribute('src', "./images/cabaña.jpg")
         texto.innerHTML = "Tu valentía es asombrosa, deberás moverte en distintas direcciones hasta encontrar la salida del bosque. Adelante, da el primer paso. Hacia adonde deseas moverte?"
         botones.innerHTML = `
                     <button id="btnOp1">Derecha</button>
@@ -78,6 +136,7 @@ function muerte2 (){
 }
 
 function avanzar1 (){
+    imagen1.setAttribute('src', "./images/cabaña.jpg")
     texto.innerHTML = "Te encuentras una cabaña abandonada, luego de requisarla encuentras algo de comida y unas llaves"
     botones.innerHTML = `
                         <button id="btnComer">Comer</button>
@@ -166,26 +225,17 @@ function avanzar3(){
 
 
 function capituloSegundo(){
-    texto.innerHTML = "CAPITULO 2 - ..Luego de unos minutos abres los ojos. Estas sentado y atado a una silla, y el hombre que te atacó esta de pie delante de ti. Te mira fijamente a los ojos y es entonces cuando pronuncia las palabras mágicas: Como te llamas?"
-    botones.innerHTML = `<input type="text" id="idnombre" required>
-                        <button id="btnAccept">Aceptar</button>`
+    texto.innerHTML = "CAPITULO 2 - ..Luego de unos minutos abres los ojos. Estas sentado y atado a una silla, y el hombre que te atacó esta de pie delante de ti. Te mira fijamente a los ojos.."
+    botones.innerHTML = `<button id="btnAccept">Continuar</button>`
     btnAccept.onclick = () => seleccionarArma()
-    
-    /* btnAccept.onclick = () => validarNombre() */
 }
 
-/* function validarNombre(){
-    
-    if(nombreUsuario==""){
-        texto.innerHTML = "Debes ingresar tu nombre"
-        capituloSegundo()
-    } else {seleccionarArma()}
-    
-} */
 
 
 function seleccionarArma() {
-    texto.innerHTML = "Hola |Aqui va el nombre| Estas aquí, atrapado en tus propios pensamientos y no podrás salir solo, por eso decidí ayudarte, como estabas muy nervioso tuve que golpearte y atarte a esta silla, pero ahora que te has tranquilizado te liberaré y te daré mi ayuda. Te regalaré una de mis armas que podrán serte de utilidad en el futuro, pero solo puedes elegir una"
+    let Usuario = localStorage.getItem("nombre")
+    console.log(Usuario)
+    texto.innerHTML = "Hola "+Usuario+" Estas aquí, atrapado en tus propios pensamientos y no podrás salir solo, por eso decidí ayudarte, como estabas muy nervioso tuve que golpearte y atarte a esta silla, pero ahora que te has tranquilizado te liberaré y te daré mi ayuda. Te regalaré una de mis armas que podrán serte de utilidad en el futuro, pero solo puedes elegir una"
     botones.innerHTML = `<button id="btnCu">Elegir Cuchillo</button>
                         <button id="btnPalo">Elegir Palo</button>
                         <button id="btnRev">Elegir Revolver</button>`
@@ -198,21 +248,21 @@ function seleccionarArma() {
 
 function agregarInv1(){
     inventario.push(new arma ("Cuchillo", "50"))
-    texto.innerHTML = "Ahora tienes un "+inventario[0].tipo+" capaz de causar un daño del "+inventario[0].danio+"% en tu inventario"
+    texto.innerHTML = "Ahora tienes un "+inventario[0].tipo+" en tu inventario"
     botones.innerHTML = `<button id="btnContinue">Continuar</button>`
     btnContinue.onclick = () => capituloTercero()
 }
 
 function agregarInv2(){
     inventario.push(new arma ("Palo", "30"))
-    texto.innerHTML = "Ahora tienes un "+inventario[0].tipo+" capaz de causar un daño del "+inventario[0].danio+"% en tu inventario"
+    texto.innerHTML = "Ahora tienes un "+inventario[0].tipo+" en tu inventario"
     botones.innerHTML = `<button id="btnContinue">Continuar</button>`
     btnContinue.onclick = () => capituloTercero()
 }
 
 function agregarInv3(){
     inventario.push(new arma ("Revolver", "100"))
-    texto.innerHTML = "Ahora tienes un "+inventario[0].tipo+" capaz de causar un daño del "+inventario[0].danio+"% en tu inventario"
+    texto.innerHTML = "Ahora tienes un "+inventario[0].tipo+" en tu inventario"
     botones.innerHTML = `<button id="btnContinue">Continuar</button>`
     btnContinue.onclick = () => capituloTercero()
 }
@@ -331,6 +381,46 @@ function chapulin4Avanzar2(){
     btnCont.onclick = () => capituloCuatro()
 }
 
+function musico(){
+    texto.innerHTML = "El camino recto te lleva directo a un monte en donde parece haber una persona sentada con una guitarra en sus manos"
+    botones.innerHTML = `<button id="btnCont">Continuar</button>`
+    btnCont.onclick = () => musico2()
+}
+
+function musico2 (){
+    texto.innerHTML = "Al acercarte mas, esta persona te cuenta sobre sus experiencias trabajando para un gorila pelado que comerciaba computadoras DELL y luego se llevaba los dolares a Uruguay dejando a nuestro querido pais en la mismisima miseria, pero que un dia se canso mandando todo a la mierda, y dedicandose a hacer musica para gente perdida en los bosques"
+    botones.innerHTML = `<button id="btnCont">Continuar</button>`
+    btnCont.onclick = () => musico3()
+}
+
+function musico3(){
+    texto.innerHTML = "Luego de quejarse de sus problemas durante 3 horas, esta persona te mira y te pregunta si quieres escuchar una cancion. Tu respuesta:"
+    botones.innerHTML = `<button id="btnEscuchar">Sentarte en una piedra a escuchar las melodías</button>
+                        <button id="btnEvitar">Pasarte su música y su historia por la parte mas céntrica del conducto rectal y decirle que deje el boludeo para otro día por que de momento te importa mas como salir del bosque</button>`
+    btnEscuchar.onclick = () => escuchaMusica()
+    btnEvitar.onclick = () => evitarMusica()
+}
+
+function escuchaMusica(){
+    texto.innerHTML = "Repentinamente comienza a escucharse unos aullidos como de gato no castrado y te preguntas que demonios es ese sonido tan extraño y horripilante. <br> Y si, era el nuevo hit compuesto por este musico misterioso, quien luego de interpretar su cancion nauseabunda te da un mapa del bosque, que resultará ser de gran ayuda"
+    botones.innerHTML = `<button id="btnCont">Continuar</button>`
+    btnCont.onclick = () => escuchaMusica2()
+}
+
+function escuchaMusica2(){
+    inventario.push(new arma ("Mapa", "100"))
+    texto.innerHTML = "Ahora tienes un "+inventario[1].tipo+" en tu inventario"
+    botones.innerHTML = `<button id="btnCont">Continuar al siguiente capítulo</button>`
+    btnCont.onclick = () => capituloCuatro()
+}
+
+function evitarMusica(){
+    texto.innerHTML = "Ante tu indiferencia por su arte, el tipo se te enoja y te manda a los excrementos humanos al ritmo de 'Para el pueblo lo que es del pueblo' de Piero"
+    botones.innerHTML = `<button id="btnCont">Continuar al siguiente capítulo</button>`
+    btnCont.onclick = () => capituloCuatro()
+
+}
+
 const mensaje = ["TE MUERES DE UN ATAQUE REPENTINO POR FALTA DE CONTINUIDAD EN LA HISTORIA","TE MUERES POR QUE EL AUTOR SE QUEMO LA CABEZA PROGRAMANDO","TE MUERES POR QUE EL AUTOR SE HARTO DE ESCRIBIR CODIGO"]
 
 function capituloCuatro(){
@@ -343,11 +433,14 @@ function capituloCuatro(){
     } else {
         texto.innerHTML = "CAPITULO 4 - "+mensaje[2]
     }
-    
     botones.innerHTML = `<button id="btnReiniciar">Jugar de nuevo</button>`
     btnReiniciar.onclick = () => comienzo()
-}
+    
+    
+    }
 
+    localStorage.clear()
+}
 
 
 /*
@@ -397,12 +490,6 @@ function op3Paso2C3(){
 function capituloCuatro(c4) {
     alert("Has avanzado al siguiente capitulo")
     alert("")
-}
 
 
-
-
-
-
-
- */
+} */
