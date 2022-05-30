@@ -47,14 +47,29 @@ function credits(obj){
 nombreUsuario()
 
 
+
+/* Consultas Lucio
+1.- Tema modulos
+2.- Tema SpeechSynthesisUtterance (si cuenta como libreria y como cambiar los idiomas)
+3.- Aclarar tema de github, ahora esta todo en el link actual 
+4.- consultar por devolucion de Incorporar librerias y Segunda entrega de proyecto
+5.- Como incoporar audios
+*/
+
+
 // Funciones
 
 function hablar(texto1){
     let voz = new SpeechSynthesisUtterance();
+    speechSynthesis.cancel(voz)
     voz.text = texto1;
     voz.lang = "es-AR"
     voz.pitch = 2
-    speechSynthesis.speak(voz)
+    activarVoz(voz)
+}
+
+function activarVoz(a){    
+    speechSynthesis.speak(a)
 }
 
 
@@ -85,6 +100,7 @@ function error(){
 
 function comienzo (){
     texto.innerHTML = "CAPITULO 1 - Has despertado en medio de un bosque desconocido, en algún lugar de la Argentina, es de noche y es invierno, no tienes nada mas que lo que llevas puesto. ¿Podrás escapar por tus propios métodos?" 
+    
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btnJugar" >Ser valiente y probar el juego</button>
                         <button id="btnSalir" >Apichonarse y pedir rescate</button>`
