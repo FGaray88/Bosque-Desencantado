@@ -1,3 +1,5 @@
+//import {hablar,nombreUsuario, nombreUser, error, comienzo} from "./init.js"
+
 // Constructores
 
 class arma{
@@ -12,24 +14,49 @@ class arma{
 const inventario = []
 const imagen1 = document.querySelector("#imagen")
 let nombre = localStorage.getItem("nombre")
+let armaElegida = ""
 const mensaje = ["TE MUERES DE UN ATAQUE REPENTINO POR FALTA DE CONTINUIDAD EN LA HISTORIA","TE MUERES POR QUE EL AUTOR SE QUEMO LA CABEZA PROGRAMANDO","TE MUERES POR QUE EL AUTOR SE HARTO DE ESCRIBIR CODIGO"]
+
+    
+function creditos(){
+    fetch("./creditos.json")
+        .then ((respuesta)=>{
+            return respuesta.json()
+        })
+        .then ((dato)=>{
+            credits(dato)
+            console.log(dato)
+        }).catch ((err)=>{
+            console.log("error: " + err)
+        })
+    }
+
+function credits(obj){
+        texto.innerHTML = `<strong>"${obj.nombre}"</strong><br>
+                            Gracias por jugar <br>
+                            Version: ${obj.version} <br>
+                            Autor: ${obj.autor} <br>
+                            Año: ${obj.anio}`
+        botones.innerHTML = `<button id="btnTrue">Jugar de nuevo</button>`
+        btnTrue.onclick = () => nombreUsuario()
+    }
+/* function mostrarTextos(obj){
+    obj.foreach()
+    //inconcluso: debo encontrar la manera de mostrar los textos.json en textos.innerHTML
+} */
+
+
 
 
 // Llamados
 
-validarNombre()
-accionesFinales()
-//comienzo()
+nombreUsuario()
 
-/*botones.innerHTML = `<button id="btnTrue">Hablar</button>`
-btnTrue.onclick = () => hablar("Ingresa tu nombre para comenzar")*/
+
+
+
 
 // Funciones
-
-
-
-
-
 
 function hablar(texto1){
     let voz = new SpeechSynthesisUtterance();
@@ -37,23 +64,10 @@ function hablar(texto1){
     voz.lang = "es-AR"
     voz.pitch = 2
     speechSynthesis.speak(voz)
-    
-
 }
 
-function validarNombre(){   
-    nombre===null ? validarNombre2() : Principal() // Operador Ternario
-}
 
-function Principal(){
-    imagen1.setAttribute('src', "./images/bosquenoche.jpg")
-    texto.innerHTML = "Hola "+nombre+" ¿Quieres jugar otra vez?"
-    hablar(texto.innerHTML)
-    botones.innerHTML = `<button id="btnReiniciar">y.. si no queda otra..</button>`
-    btnReiniciar.onclick = () => comienzo()
-}
-
-function validarNombre2(){
+function nombreUsuario(){
     imagen1.setAttribute('src', "./images/bosquenoche.jpg")
     texto.innerHTML = "Ingresá tu nombre para comenzar"
     hablar(texto.innerHTML)
@@ -122,6 +136,7 @@ function muerte2 (){
     texto.innerHTML = "Caminas unos metros y te encuentras con 'Slenderman', quien sin dudarlo un segundo, te devora de un bocado"
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btnReiniciar">Empezar de nuevo</button>`
+    accionesFinales()
     btnReiniciar.onclick = () => comienzo()
 }
 
@@ -287,21 +302,30 @@ function batalla(){
     resGolpe>energiaEnemigo ? acertar():errar()
 
     function acertar (){
-        texto.innerHTML = "Buen golpe, le diste justo en el escudo de Chicago"
+        texto.innerHTML = "Buen golpe, le diste justo en el escudo de Chicago, el monstruo calvo muere y te quedas con una de sus garras"
         hablar(texto.innerHTML)
         botones.innerHTML = `<button id="btnCont">Continuar al siguiente capitulo</button>`
-        btnCont.onclick = () => capituloCuatro()
+        btnCont.onclick = () => garra()
     }
     function errar(){
         texto.innerHTML = "Tus manos temblorosas no te permiten acertar el golpe, y el monstruo calvo te implanta un chip de monitoreo que controla tus pensamientos, te vuelves capitalista y te pasas el resto de tu vida trabajando en el Banco Galícia"
         hablar(texto.innerHTML)
         botones.innerHTML = `<button id="btnReiniciar">Empezar de nuevo</button>`
+        accionesFinales()
         btnReiniciar.onclick = () => comienzo()
     }
 }
 
 function escapar(){
-    texto.innerHTML = "Descubres con asombro que el depredador es igual como atleta que como político, y ante la lentitud con que la que éste se mueve logras escapar y dejar atras al malvado monstruo que cae derrotado ante tan temible humillación y pide como último deseo una suscripción a 'Hair Recovery'"
+    texto.innerHTML = "Descubres con asombro que el depredador es igual como atleta que como político, y ante la lentitud con que la que éste se mueve logras escapar y dejar atras al malvado monstruo que cae derrotado ante tan temible humillación, soltando una de sus garras y pidiendo como último deseo una suscripción a 'Hair Recovery'"
+    hablar(texto.innerHTML)
+    botones.innerHTML = `<button id="btnCont">Continuar al siguiente capitulo</button>`
+    btnCont.onclick = () => garra()
+}
+
+function garra(){
+    inventario.push(new arma ("Garra de oso", "20"))
+    texto.innerHTML = "Ahora tienes un "+inventario[1].tipo+" en tu inventario"
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btnCont">Continuar al siguiente capitulo</button>`
     btnCont.onclick = () => capituloCuatro()
@@ -335,6 +359,7 @@ function chapulinA(){
     texto.innerHTML = "Agobiado de tanta información sin poder ser procesada le das un puñetazo al chapulín chileno justo arriba de la naríz. Entre los ojos. Es una lástima que era tu única oportunidad para escapar, quedas atrapado en el bosque por toda la eternidad"
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btnReiniciar">Empezar de nuevo</button>`
+    accionesFinales()
     btnReiniciar.onclick = () => comienzo()
 }
 
@@ -372,6 +397,7 @@ function chapulin4Muerte3(){
     texto.innerHTML = "El chapulín da un giro de 360° buscando al enemigo y al confundirse pensando que el enemigo eres tú, te parte el chipote chillón en la cabeza. Mueres al instante. Y si, la torpeza del chapulín no tiene límites geográficos"
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btnReiniciar">Empezar de nuevo</button>`
+    accionesFinales()
     btnReiniciar.onclick = () => comienzo()
 }
 
@@ -410,18 +436,19 @@ function musico3(){
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btnEscuchar">Sentarte en una piedra a escuchar las melodías</button>
                         <button id="btnEvitar">Pasarte su música y su historia por la parte mas céntrica del conducto rectal y decirle que deje el boludeo para otro día por que de momento te importa mas como salir del bosque</button>`
-    btnEscuchar.onclick = () => escuchaMusica()
+    btnEscuchar.onclick = () => escucharMusica()
     btnEvitar.onclick = () => evitarMusica()
 }
 
-function escuchaMusica(){
+function escucharMusica(){
     texto.innerHTML = "Repentinamente comienzan a escucharse unos aullidos, como de gato no castrado, y te preguntas que demonios es ese sonido tan extraño y horripilante. <br> Y si, era el nuevo hit compuesto por este músico misterioso, quien luego de interpretar su canción nauseabunda, te da un mapa del bosque, que resultará ser de gran ayuda"
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btnCont">Continuar</button>`
-    btnCont.onclick = () => escuchaMusica2()
+    let item = localStorage.getItem("Sobre")
+    item!="Magico"||item==null ?  btnCont.onclick = () => agregarMapa() : btnCont.onclick = () => capituloSeis()
 }
 
-function escuchaMusica2(){
+function agregarMapa(){
     inventario.push(new arma ("Mapa", "100"))
     texto.innerHTML = "Ahora tienes un "+inventario[1].tipo+" en tu inventario"
     hablar(texto.innerHTML)
@@ -430,27 +457,100 @@ function escuchaMusica2(){
 }
 
 function evitarMusica(){
-    texto.innerHTML = "Ante tu indiferencia por su arte, el tipo se te enoja y te manda a los excrementos humanos al ritmo de 'Para el pueblo, lo que es del pueblo', de Piero"
+    texto.innerHTML = "Ante tu indiferencia por su arte, el tipo se te enoja y te manda a los excrementos humanos al ritmo de 'Para el pueblo, lo que es del pueblo', de Piero, aun así se apiada de tu situacion y te da un mapa del bosque, que resultará ser de gran ayuda"
     hablar(texto.innerHTML)
-    botones.innerHTML = `<button id="btnCont">Continuar al siguiente capítulo</button>`
-    btnCont.onclick = () => capituloCuatro()
+    botones.innerHTML = `<button id="btnCont">Continuar</button>`
+    let item = localStorage.getItem("Sobre")
+    item!="Magico"||item==null ?  btnCont.onclick = () => agregarMapa() : btnCont.onclick = () => capituloSeis()
 }
 
+
 function capituloCuatro(){
-    //let img = localStorage.getItem("imagen")
-            /* if(img==="1"){
-                imagen1.setAttribute('src', "./images/oso.jpg")
-            } else if(img==="2"){
-                imagen1.setAttribute('src', "./images/chapulinchile.jpg")
-            } else {
-                imagen1.setAttribute('src', "./images/musico.jpg")
-            } */
-    let numMensaje = Math.ceil(Math.random()*100)
-    numMensaje<=33 ? numMensaje>33 && numMensaje<=66 ? texto.innerHTML = "CAPITULO 4 - "+mensaje[0] : texto.innerHTML = "CAPITULO 4 - "+mensaje[1] :texto.innerHTML = "CAPITULO 4 - "+mensaje[2], hablar(texto.innerHTML) // Operador Ternario
-    botones.innerHTML = `<button id="btnReiniciar">Empezar de nuevo</button>`
-    btnReiniciar.onclick = () => comienzo()
+    texto.innerHTML = "CAPITULO 4 - Sigues avanzando por el bosque y ves a lo lejos unas luces que parecieran indicar que la salida esta cerca, apuras el paso y cuando ya casi estas llegando, caes en una trampa para cazar animales y quedas colgando de un árbol, con una soga amarrada a tus pies"
+    hablar(texto.innerHTML)
+    botones.innerHTML = `<button id="btnCont">Continuar</button>`
+    btnCont.onclick = () => capituloCuatro2()
 }
+
+function capituloCuatro2(){
+    armaElegida = inventario[0].tipo
+    armaElegida=="Cuchillo" ? texto.innerHTML = "Intentas utilizar tu cuchillo para cortar la soga pero se te cae al piso" : texto.innerHTML = "Si tuvieras un cuchillo podrías cortar la soga"
+    hablar(texto.innerHTML)
+    botones.innerHTML = `<button id="btnCont">Continuar</button>`
+    btnCont.onclick = () => capituloCuatro3()
+}
+
+function capituloCuatro3(){
+    texto.innerHTML = "En ese momento aparece el hombre que te ayudó en la cabaña, y te explica que esas luces no eran mas que una visión de tu imaginación, y que de no haber caído en la trampa hubieras caído en el precipicio que estaba ahí delante, también te habla acerca de un extraño mapa que ha estado buscando durante muchos años, entiendes que el hombre vive tu misma situación, perdido en el bosque intentando encontrar la salida"
+    hablar(texto.innerHTML)
+    botones.innerHTML = `<button id="btnCont">Continuar</button>`
+    btnCont.onclick = () => capituloCuatro4()
+}
+
+function capituloCuatro4(){
+    let mapa = inventario[1].tipo
+    mapa=="Mapa" ? c4ConMapa() : c4SinMapa()
+    
+}
+
+function c4ConMapa(){
+    texto.innerHTML = "Le muestras el mapa que te dió aquel músico misterioso y al interpretarlo entre los dos, consiguen al fin dar con el camino que conduce directo a la salida del bosque"
+    hablar(texto.innerHTML)
+    botones.innerHTML = `<button id="btnCont">Continuar</button>`
+    btnCont.onclick = () => final()
+}
+
+function c4SinMapa(){
+    texto.innerHTML = "No tienes ni idea de que mapa esta hablando el paisano éste, sin embargo ambos coinciden en unir fuerzas y buscarlo juntos"
+    hablar(texto.innerHTML)
+    botones.innerHTML = `<button id="btnCont">Continuar al siguiente Capítulo</button>`
+    btnCont.onclick = () => capituloCinco()
+}
+
+function capituloCinco(){
+    texto.innerHTML = "Luego de caminar durante un par de horas en las que el hombre misterioso te ha explicado como interpretar ese mapa, se encuentran con un árbol que parece tener un escrito en su copa.."
+    hablar(texto.innerHTML)
+    botones.innerHTML = `<button id="btnCont">Continuar</button>`
+    btnCont.onclick = () => capituloCinco2()
+}
+
+function capituloCinco2 (){
+    texto.innerHTML = "El escrito indica: 'Camarón que se duerme, se lo lleva la chingada'. No entiendes que diablos significa esa frase, pero al pronunciarla en voz alta, el hombre que te acompañaba se desintegra como por arte de magia, reduciendose su cuerpo a cenizas, entre las cuales hay ahora una carta"
+    hablar(texto.innerHTML)
+    botones.innerHTML = `<button id="btnCont">Continuar</button>`
+    btnCont.onclick = () => capituloCinco3()
+}
+
+function capituloCinco3(){
+    localStorage.setItem("Sobre", "Magico")
+    texto.innerHTML = "La carta tiene un dibujo de una flecha recta apuntando a un arco íris"
+    hablar(texto.innerHTML)
+    botones.innerHTML = `<button id="btnRecto">Caminar recto</button>
+                        <button id="btnDerecha">Caminar a la derecha</button>
+                        <button id="btnIzquierda">Caminar a la izquierda</button>`
+    btnRecto.onclick = () => musico()
+    btnDerecha.onclick = () => muerte2()
+    btnIzquierda.onclick = () => {texto.innerHTML = "Encuentras un camino que te conduce a un tiempo-espacio ya visitado", botones.innerHTML = `<button id="btnCon">Continuar</button>`, hablar(texto.innerHTML), btnCon.onclick = () => capituloCuatro()} 
+}
+
+function capituloSeis(){
+    texto.innerHTML = "Recuerdas las palabras de aquel paisano desintegrado acerca de como leer el mapa, y ahora que lo tienes descubres el camino hacia la salida del bosque"
+    hablar(texto.innerHTML)
+    botones.innerHTML = `<button id="btnCont">Continuar</button>`
+    btnCont.onclick = () => final()
+}
+
+function final(){
+    texto.innerHTML = "Felicidades! Has escapado del bosque!"
+    hablar(texto.innerHTML)
+    botones.innerHTML = `<button id="btnCont">Créditos</button>`
+    accionesFinales()
+    btnCont.onclick = () => creditos()
+}
+
+
 
 function accionesFinales(){
     localStorage.clear()
+    inventario.splice(inventario.lenght)
 }
