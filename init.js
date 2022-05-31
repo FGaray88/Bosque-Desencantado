@@ -33,7 +33,7 @@ function nombreUser(){
     localStorage.setItem("nombre", nombreUsuario.value)
     let User = nombreUsuario.value
     let validacionUser = User || "falsy" // Operador OR
-    validacionUser==="falsy" ? error() : comienzo() // Operador ternario
+    validacionUser==="falsy" ? Swal.fire('Debes ingresar un nombre') : comienzo() // Operador ternario
 }
 
 function error(){

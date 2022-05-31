@@ -1,9 +1,14 @@
-import {hablar,nombreUsuario, nombreUser, error, comienzo} from "./init.js"
+
+
+/* IMPORTS
+import {hablar,nombreUsuario, nombreUser, comienzo} from "./init.js"
 import {capituloPrimero,muerte1, muerte2, avanzar1, muerte3, muerte4, abrirCofre, agregarInv1, llaves, salirCab, salirCab2, avanzar2, avanzar3, niebla, capituloSegundo, capituloTercero, seleccionarArma, agregarInv2, agregarInv3} from "./parteUno.js"
 //import {osoLarreta,batalla,acertar,errar,escapar,garra} from "./enemyOso.js"
 import {chapulin, chapulin2, chapulin3, chapulin4, chapulinA, chapulinB, chapulin4Avanzar, chapulin4Avanzar2, chapulin4Muerte, chapulin4Muerte2, chapulin4Muerte3} from "./enemyChapulin.js"
 import {musico, musico2, musico3, escucharMusica, agregarMapa, evitarMusica} from "./enemyMusico.js"
 import {capituloCuatro, capituloCuatro2, capituloCuatro3, capituloCuatro4, c4ConMapa, c4SinMapa, capituloCinco, capituloCinco2, capituloCinco3, capituloSeis, final, accionesFinales} from "./parteFinal.js"
+*/
+
 // Constructores
 
 class arma{
@@ -12,6 +17,9 @@ class arma{
         this.danio = parseInt(danio);
     }
 }
+
+
+
 
 // Variables y Constantes
 
@@ -52,20 +60,18 @@ function credits(obj){
 
 nombreUsuario()
 
-export {arma, inventario, imagen1, nombre, armaElegida, item, creditos, credits}
+//export {arma, inventario, imagen1, nombre, armaElegida, item, creditos, credits}
 
-/* Consultas Lucio
+/* Tareas restantes
 1.- Tema modulos
-2.- Tema SpeechSynthesisUtterance (si cuenta como libreria y como cambiar los idiomas)
-3.- Aclarar tema de github, ahora esta todo en el link actual 
-4.- consultar por devolucion de Incorporar librerias y Segunda entrega de proyecto
-5.- Como incoporar audios
+2.- Aplicar librerias
+
 */
 
 
 // Funciones
 
-/* function hablar(texto1){
+function hablar(texto1){
     let voz = new SpeechSynthesisUtterance();
     speechSynthesis.cancel(voz)
     voz.text = texto1;
@@ -93,16 +99,10 @@ function nombreUser(){
     localStorage.setItem("nombre", nombreUsuario.value)
     let User = nombreUsuario.value
     let validacionUser = User || "falsy" // Operador OR
-    validacionUser==="falsy" ? error() : comienzo() // Operador ternario
+    validacionUser==="falsy" ? Swal.fire('Debes ingresar un nombre')&&hablar('Debes ingresar un nombre') : comienzo() // Operador ternario
 }
 
-function error(){
-    texto.innerHTML = "Debes ingresar un nombre para comenzar el juego"
-    hablar(texto.innerHTML)
-    botones.innerHTML = `<input type="text" id="nombre">
-                        <button id="btnTrue">Aceptar</button>`
-    btnTrue.onclick = () => nombreUser()
-}
+
 
 function comienzo (){
     texto.innerHTML = "CAPITULO 1 - Has despertado en medio de un bosque desconocido, en algún lugar de la Argentina, es de noche y es invierno, no tienes nada mas que lo que llevas puesto. ¿Podrás escapar por tus propios métodos?" 
@@ -160,7 +160,7 @@ function avanzar1 (){
                         <button id="btnSalCab">Salir de la cabaña</button>`
     btnComer.onclick = () => muerte3()
     btnLlaves.onclick = () => llaves()
-    btnSalCab.onclick = () => salirCab()
+    btnSalCab.onclick = () => Swal.fire('FEAR BUILDS WALLS | tu propio miedo te impide salir de la cabaña') && hablar("tu propio miedo te impide salir de la cabaña")
 }
 
 function muerte3 (){
@@ -177,22 +177,10 @@ function llaves(){
     botones.innerHTML = `<button id="btnAbr">Abrir el cofre</button>
                         <button id="btnHuir">Salir corriendo de la Cabaña</button>`
     btnAbr.onclick = () => abrirCofre()
-    btnHuir.onclick = () => salirCab2()
+    btnHuir.onclick = () => Swal.fire('FEAR BUILDS WALLS | tu propio miedo te impide salir de la cabaña') && hablar("tu propio miedo te impide salir de la cabaña")
 }
 
-function salirCab (){
-    texto.innerHTML = "'FEAR BUILDS WALLS' | tu propio miedo te impide salir de la cabaña"
-    hablar("tu propio miedo te impide salir de la cabaña")
-    botones.innerHTML = `<button id="btnVolver">Volver atras</button>`
-    btnVolver.onclick = () => avanzar1()
-}
 
-function salirCab2 (){
-    texto.innerHTML = "FEAR BUILDS WALLS | tu propio miedo te impide salir de la cabaña"
-    hablar("tu propio miedo te impide salir de la cabaña")
-    botones.innerHTML = `<button id="btnVolver">Volver atras</button>`
-    btnVolver.onclick = () => llaves()
-}
 
 function abrirCofre (){
     texto.innerHTML = "Al insertar la llave en la cerradura del cofre notas ruidos de pasos por detrás de ti, te volteas y lo último que ves, es a un hombre partirte un palo en la chirimoya"
@@ -253,7 +241,7 @@ function seleccionarArma() {
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btnCu">Elegir Cuchillo</button>
                         <button id="btnPalo">Elegir Palo</button>
-                        <button id="btnRev">Elegir Revolver</button>`
+                        <button id="btnRev">Elegir Revólver</button>`
     btnCu.onclick = () => agregarInv1()
     btnPalo.onclick = () => agregarInv2()
     btnRev.onclick = () => agregarInv3()
@@ -261,24 +249,21 @@ function seleccionarArma() {
 
 function agregarInv1(){
     inventario.push(new arma ("Cuchillo", "50"))
-    texto.innerHTML = "Ahora tienes un "+inventario[0].tipo+" en tu inventario"
-    hablar(texto.innerHTML)
+    Swal.fire("Ahora tienes un "+inventario[0].tipo+" en tu inventario")&&hablar("Ahora tienes un "+inventario[0].tipo+" en tu inventario")&&capituloTercero()
     botones.innerHTML = `<button id="btnContinue">Continuar</button>`
     btnContinue.onclick = () => capituloTercero()
 }
 
 function agregarInv2(){
     inventario.push(new arma ("Palo", "30"))
-    texto.innerHTML = "Ahora tienes un "+inventario[0].tipo+" en tu inventario"
-    hablar(texto.innerHTML)
+    Swal.fire("Ahora tienes un "+inventario[0].tipo+" en tu inventario")&&hablar("Ahora tienes un "+inventario[0].tipo+" en tu inventario")&&capituloTercero()
     botones.innerHTML = `<button id="btnContinue">Continuar</button>`
     btnContinue.onclick = () => capituloTercero()
 }
 
 function agregarInv3(){
-    inventario.push(new arma ("Revolver", "100"))
-    texto.innerHTML = "Ahora tienes un "+inventario[0].tipo+" en tu inventario"
-    hablar(texto.innerHTML)
+    inventario.push(new arma ("Revólver", "100"))
+    Swal.fire("Ahora tienes un "+inventario[0].tipo+" en tu inventario")&&hablar("Ahora tienes un "+inventario[0].tipo+" en tu inventario")&&capituloTercero()
     botones.innerHTML = `<button id="btnContinue">Continuar</button>`
     btnContinue.onclick = () => capituloTercero()
 }
@@ -296,7 +281,6 @@ function capituloTercero(){
 }
 
 function osoLarreta(){
-    localStorage.setItem("imagen", "1")
     texto.innerHTML = "Te encuentras con un oso gigante que tiene la cara de Horácio Rodriguez Larreta y el escudo de Nueva Chicago en uno de sus hombros, que se abalanza directamente hacia ti, que decides hacer?"
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btn1">Utilizar árma del inventario</button>
@@ -564,4 +548,4 @@ function accionesFinales(){
     inventario.splice(inventario.lenght)
     item = ""
 
-} */
+}
