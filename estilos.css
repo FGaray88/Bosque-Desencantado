@@ -11,6 +11,11 @@ body {
     height: 1000px;
 }
 
+#larreta {
+    width: 60%;
+}
+
+
 .pantalla1{
     display: flex;
     flex-flow: row;

@@ -64,8 +64,6 @@ nombreUsuario()
 
 /* Tareas restantes
 1.- Tema modulos
-2.- Aplicar librerias
-
 */
 
 
@@ -281,6 +279,7 @@ function capituloTercero(){
 }
 
 function osoLarreta(){
+    swal.fire(`<img id="larreta" src="./images/osogif.gif" alt=""><br> Te has topado con un enemigo poderoso`)
     texto.innerHTML = "Te encuentras con un oso gigante que tiene la cara de Horácio Rodriguez Larreta y el escudo de Nueva Chicago en uno de sus hombros, que se abalanza directamente hacia ti, que decides hacer?"
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btn1">Utilizar árma del inventario</button>
@@ -339,6 +338,7 @@ function chapulin2(){
 }
 
 function chapulin3(){
+    swal.fire(`<img id="larreta" src="./images/chapulin.gif" alt=""><br>Has encontrado a un chapulin`)
     texto.innerHTML = "La versión chilena del chapulín colorado acude a tu llamado, te explica la historia del bosque, te cuenta en detalle como hacer para escapar, incluso te da tips de como alcanzar el estado Zen, por desgracia el dialecto implementado por nuestro héroe trasandino resulta inentendible para ti, y en un intento de copiar su fonética tu le respondes:"
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btnC1"> E la pelá de la wea pal andai del weon</button>
@@ -409,16 +409,15 @@ function chapulin4Avanzar2(){
 }
 
 function musico(a){
-    console.log(a)
+    swal.fire(`<img id="luis" src="./images/luis.gif" alt=""><br>Has encontrado al flaquito de la suerte`)
     item==="" ? imagen1.setAttribute('src', "./images/bosqueOscuro.jpg") : imagen1.setAttribute('src', "./images/bosqueSol.jpg") 
-    texto.innerHTML = "El camino recto te lleva directo a un monte en donde parece haber una persona sentada con una guitarra en sus manos"
+    texto.innerHTML = "El camino recto te lleva directo a un monte en donde parece haber una persona con una guitarra en sus manos"
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btnCont">Continuar</button>`
     btnCont.onclick = () => musico2()
 }
 
 function musico2 (){
-
     texto.innerHTML = "Al acercarte mas, ésta persona te cuenta sobre sus experiencias trabajando para un gorila pelado que comerciaba computadoras DELL, y luego se llevaba los dólares a Uruguay dejando a nuestro querido país en la mismísima miseria, pero que un día se cansó, mandando todo a la mierda, y dedicandose a hacer música para gente perdida en los bosques"
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btnCont">Continuar</button>`
@@ -547,5 +546,4 @@ function accionesFinales(){
     localStorage.clear()
     inventario.splice(inventario.lenght)
     item = ""
-
 }
