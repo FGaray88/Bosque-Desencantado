@@ -1,5 +1,9 @@
-//import {hablar,nombreUsuario, nombreUser, error, comienzo} from "./init.js"
-
+import {hablar,nombreUsuario, nombreUser, error, comienzo} from "./init.js"
+import {capituloPrimero,muerte1, muerte2, avanzar1, muerte3, muerte4, abrirCofre, agregarInv1, llaves, salirCab, salirCab2, avanzar2, avanzar3, niebla, capituloSegundo, capituloTercero, seleccionarArma, agregarInv2, agregarInv3} from "./parteUno.js"
+//import {osoLarreta,batalla,acertar,errar,escapar,garra} from "./enemyOso.js"
+import {chapulin, chapulin2, chapulin3, chapulin4, chapulinA, chapulinB, chapulin4Avanzar, chapulin4Avanzar2, chapulin4Muerte, chapulin4Muerte2, chapulin4Muerte3} from "./enemyChapulin.js"
+import {musico, musico2, musico3, escucharMusica, agregarMapa, evitarMusica} from "./enemyMusico.js"
+import {capituloCuatro, capituloCuatro2, capituloCuatro3, capituloCuatro4, c4ConMapa, c4SinMapa, capituloCinco, capituloCinco2, capituloCinco3, capituloSeis, final, accionesFinales} from "./parteFinal.js"
 // Constructores
 
 class arma{
@@ -17,6 +21,8 @@ let nombre = localStorage.getItem("nombre")
 let armaElegida = ""
 let item = ""
 const mensaje = ["TE MUERES DE UN ATAQUE REPENTINO POR FALTA DE CONTINUIDAD EN LA HISTORIA","TE MUERES POR QUE EL AUTOR SE QUEMO LA CABEZA PROGRAMANDO","TE MUERES POR QUE EL AUTOR SE HARTO DE ESCRIBIR CODIGO"]
+
+
 
 
 function creditos(){
@@ -46,7 +52,7 @@ function credits(obj){
 
 nombreUsuario()
 
-
+export {arma, inventario, imagen1, nombre, armaElegida, item, creditos, credits}
 
 /* Consultas Lucio
 1.- Tema modulos
@@ -59,7 +65,7 @@ nombreUsuario()
 
 // Funciones
 
-function hablar(texto1){
+/* function hablar(texto1){
     let voz = new SpeechSynthesisUtterance();
     speechSynthesis.cancel(voz)
     voz.text = texto1;
@@ -558,4 +564,4 @@ function accionesFinales(){
     inventario.splice(inventario.lenght)
     item = ""
 
-}
+} */
