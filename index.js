@@ -425,10 +425,10 @@ function musico2 (){
 }
 
 function musico3(){
-    texto.innerHTML = "Luego de quejarse de sus problemas durante tres horas, ésta persona te mira y te pregunta si quieres escuchar una canción. Tu respuesta:"
+    texto.innerHTML = "Luego de quejarse de sus problemas durante tres horas, ésta persona te mira y te pregunta si quieres escuchar una canción. Puedes sentarte en una piedra a escuchar sus melodías, o puedes pasarte su música y su historia por la parte mas céntrica del conducto rectal y decirle que deje el boludeo para otro día, por que de momento te importa mas como salir del bosque "
     hablar(texto.innerHTML)
-    botones.innerHTML = `<button id="btnEscuchar">Sentarte en una piedra a escuchar las melodías</button>
-                        <button id="btnEvitar">Pasarte su música y su historia por la parte mas céntrica del conducto rectal y decirle que deje el boludeo para otro día por que de momento te importa mas como salir del bosque</button>`
+    botones.innerHTML = `<button id="btnEscuchar">Escuchar melodías</button>
+                        <button id="btnEvitar">Evitar el mal trago</button>`
     btnEscuchar.onclick = () => escucharMusica(item)
     btnEvitar.onclick = () => evitarMusica(item)
 }
@@ -449,7 +449,7 @@ function agregarMapa(){
 }
 
 function evitarMusica(){
-    texto.innerHTML = "Ante tu indiferencia por su arte, el tipo se te enoja y te manda a los excrementos humanos al ritmo de 'Para el pueblo, lo que es del pueblo', de Piero, aun así se apiada de tu situacion y te da un mapa del bosque, que resultará ser de gran ayuda"
+    texto.innerHTML = "Ante tu indiferencia por su arte, el tipo se te enoja y te manda a los excrementos humanos al ritmo de 'Para el pueblo lo que es del pueblo' de Piero, aun así se apiada de tu situacion y te da un mapa del bosque, que resultará ser de gran ayuda"
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btnCont">Continuar</button>`
     item!="Magico" ?  btnCont.onclick = () => agregarMapa() : btnCont.onclick = () => capituloSeis()
