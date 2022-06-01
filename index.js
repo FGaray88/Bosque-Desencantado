@@ -280,7 +280,8 @@ function capituloTercero(){
 }
 
 function osoLarreta(){
-    swal.fire(`<img id="larreta" src="./images/osogif.gif" alt=""><br> Te has topado con un enemigo poderoso`)
+    
+    swal.fire({position: "top", width: "280px", text:'Te has topado con un enemigo poderoso', imageUrl: "./images/osogif.gif"})
     texto.innerHTML = "Te encuentras con un oso gigante que tiene la cara de Horácio Rodriguez Larreta y el escudo de Nueva Chicago en uno de sus hombros, que se abalanza directamente hacia ti, que decides hacer?"
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btn1">Utilizar árma del inventario</button>
@@ -339,7 +340,7 @@ function chapulin2(){
 }
 
 function chapulin3(){
-    swal.fire(`<img id="larreta" src="./images/chapulin.gif" alt=""><br>Has encontrado a un chapulin`)
+    swal.fire({position: "top", width: "280px", text:'Has encontrado a un chapulin', imageUrl: "./images/chapulin.gif"})
     texto.innerHTML = "La versión chilena del chapulín colorado acude a tu llamado, te explica la historia del bosque, te cuenta en detalle como hacer para escapar, incluso te da tips de como alcanzar el estado Zen, por desgracia el dialecto implementado por nuestro héroe trasandino resulta inentendible para ti, y en un intento de copiar su fonética tu le respondes:"
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btnC1"> E la pelá de la wea pal andai del weon</button>
@@ -410,7 +411,7 @@ function chapulin4Avanzar2(){
 }
 
 function musico(a){
-    swal.fire(`<img id="luis" src="./images/luis.gif" alt=""><br>Has encontrado al flaquito de la suerte`)
+    swal.fire({position: "top", width: "280px", text:'Has encontrado al flaquito de la suerte', imageUrl: "./images/luis.gif"})
     item==="" ? imagen1.setAttribute('src', "./images/bosqueOscuro.jpg") : imagen1.setAttribute('src', "./images/bosqueSol.jpg") 
     texto.innerHTML = "El camino recto te lleva directo a un monte en donde parece haber una persona con una guitarra en sus manos"
     hablar(texto.innerHTML)
