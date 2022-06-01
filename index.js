@@ -46,7 +46,7 @@ function creditos(){
     }
 
 function credits(obj){
-        texto.innerHTML = `<strong>"${obj.nombre}"</strong><br>
+        texto.innerHTML = `"${obj.nombre}"<br>
                             Gracias por jugar <br>
                             Version: ${obj.version} <br>
                             Autor: ${obj.autor} <br>
@@ -64,6 +64,7 @@ nombreUsuario()
 
 /* Tareas restantes
 1.- Tema modulos
+2.- Ver tema de responsive (se ve muy mal en celulares)
 */
 
 
@@ -87,8 +88,8 @@ function nombreUsuario(){
     imagen1.setAttribute('src', "./images/bosquenoche.jpg")
     texto.innerHTML = "Ingresá tu nombre para comenzar"
     hablar(texto.innerHTML)
-    botones.innerHTML = `<input type="text" id="nombre">
-                        <button id="btnTrue">Aceptar</button>`
+    input.innerHTML = `<input type="text" id="nombre">` 
+    botones.innerHTML = `<button id="btnTrue">Aceptar</button>`
     btnTrue.onclick = () => nombreUser()
 }
 
@@ -97,14 +98,14 @@ function nombreUser(){
     localStorage.setItem("nombre", nombreUsuario.value)
     let User = nombreUsuario.value
     let validacionUser = User || "falsy" // Operador OR
-    validacionUser==="falsy" ? Swal.fire('Debes ingresar un nombre')&&hablar('Debes ingresar un nombre') : comienzo() // Operador ternario
+    validacionUser==="falsy" ? Swal.fire({position: "center", width: "280px", text:'Debes ingresar un nombre'})&&hablar('Debes ingresar un nombre') : comienzo() // Operador ternario
 }
 
 
 
 function comienzo (){
+    input.innerHTML = ``
     texto.innerHTML = "CAPITULO 1 - Has despertado en medio de un bosque desconocido, en algún lugar de la Argentina, es de noche y es invierno, no tienes nada mas que lo que llevas puesto. ¿Podrás escapar por tus propios métodos?" 
-    
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btnJugar" >Ser valiente y probar el juego</button>
                         <button id="btnSalir" >Apichonarse y pedir rescate</button>`
