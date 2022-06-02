@@ -34,6 +34,7 @@ const mensaje = ["TE MUERES DE UN ATAQUE REPENTINO POR FALTA DE CONTINUIDAD EN L
 
 
 function creditos(){
+    imagen1.setAttribute('src', "./images/imagenFinal.jpg")
     fetch("./creditos.json")
         .then ((respuesta)=>{
             return respuesta.json()
