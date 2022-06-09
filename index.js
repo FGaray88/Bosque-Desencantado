@@ -1,14 +1,3 @@
-
-
-/* IMPORTS
-import {hablar,nombreUsuario, nombreUser, comienzo} from "./init.js"
-import {capituloPrimero,muerte1, muerte2, avanzar1, muerte3, muerte4, abrirCofre, agregarInv1, llaves, salirCab, salirCab2, avanzar2, avanzar3, niebla, capituloSegundo, capituloTercero, seleccionarArma, agregarInv2, agregarInv3} from "./parteUno.js"
-//import {osoLarreta,batalla,acertar,errar,escapar,garra} from "./enemyOso.js"
-import {chapulin, chapulin2, chapulin3, chapulin4, chapulinA, chapulinB, chapulin4Avanzar, chapulin4Avanzar2, chapulin4Muerte, chapulin4Muerte2, chapulin4Muerte3} from "./enemyChapulin.js"
-import {musico, musico2, musico3, escucharMusica, agregarMapa, evitarMusica} from "./enemyMusico.js"
-import {capituloCuatro, capituloCuatro2, capituloCuatro3, capituloCuatro4, c4ConMapa, c4SinMapa, capituloCinco, capituloCinco2, capituloCinco3, capituloSeis, final, accionesFinales} from "./parteFinal.js"
-*/
-
 // Constructores
 
 class arma{
@@ -18,20 +7,19 @@ class arma{
     }
 }
 
-
-
-
-// Variables y Constantes
+// Variables y Constantes Globales
 
 const inventario = []
 const imagen1 = document.querySelector("#imagen")
 let nombre = localStorage.getItem("nombre")
 let armaElegida = ""
 let item = ""
-const mensaje = ["TE MUERES DE UN ATAQUE REPENTINO POR FALTA DE CONTINUIDAD EN LA HISTORIA","TE MUERES POR QUE EL AUTOR SE QUEMO LA CABEZA PROGRAMANDO","TE MUERES POR QUE EL AUTOR SE HARTO DE ESCRIBIR CODIGO"]
 
+// Llamados
 
+nombreUsuario()
 
+// Funciones
 
 function creditos(){
     imagen1.setAttribute('src', "./images/imagenFinal.jpg")
@@ -56,21 +44,6 @@ function credits(obj){
         btnTrue.onclick = () => nombreUsuario()
     }
 
-
-// Llamados
-
-nombreUsuario()
-
-//export {arma, inventario, imagen1, nombre, armaElegida, item, creditos, credits}
-
-/* Tareas restantes
-1.- Tema modulos
-2.- Ver tema de responsive (se ve muy mal en celulares)
-*/
-
-
-// Funciones
-
 function hablar(texto1){
     let voz = new SpeechSynthesisUtterance();
     speechSynthesis.cancel(voz)
@@ -83,7 +56,6 @@ function hablar(texto1){
 function activarVoz(a){    
     speechSynthesis.speak(a)
 }
-
 
 function nombreUsuario(){
     imagen1.setAttribute('src', "./images/bosquenoche.jpg")
@@ -98,10 +70,9 @@ function nombreUser(){
     let nombreUsuario = document.querySelector("#nombre")
     localStorage.setItem("nombre", nombreUsuario.value)
     let User = nombreUsuario.value
-    let validacionUser = User || "falsy" // Operador OR
-    validacionUser==="falsy" ? Swal.fire({position: "center", width: "280px", text:'Debes ingresar un nombre'})&&hablar('Debes ingresar un nombre') : comienzo() // Operador ternario
+    let validacionUser = User || "falsy"
+    validacionUser==="falsy" ? Swal.fire({position: "center", width: "280px", text:'Debes ingresar un nombre'})&&hablar('Debes ingresar un nombre') : comienzo()
 }
-
 
 
 function comienzo (){
@@ -132,7 +103,7 @@ function capituloPrimero (t){
         hablar(texto.innerHTML)
         botones.innerHTML = `<button id="btnReiniciar">Empezar de nuevo</button>`
         btnReiniciar.onclick = () => comienzo()
-    }    // Aca no utilicé operador ternario por que me haría el código mas largo en lugar de minificar
+    }
 }
 
 function muerte1 (){
@@ -147,7 +118,7 @@ function muerte2 (){
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btnReiniciar">Empezar de nuevo</button>`
     accionesFinales()
-    btnReiniciar.onclick = () => comienzo()
+    btnReiniciar.onclick = () => nombreUsuario()
 }
 
 function avanzar1 (){
@@ -307,7 +278,7 @@ function batalla(){
         hablar(texto.innerHTML)
         botones.innerHTML = `<button id="btnReiniciar">Empezar de nuevo</button>`
         accionesFinales()
-        btnReiniciar.onclick = () => comienzo()
+        btnReiniciar.onclick = () => accionesFinales(), nombreUsuario()
     }
 }
 
@@ -355,7 +326,7 @@ function chapulinA(){
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btnReiniciar">Empezar de nuevo</button>`
     accionesFinales()
-    btnReiniciar.onclick = () => comienzo()
+    btnReiniciar.onclick = () => nombreUsuario()
 }
 
 function chapulinB(){
@@ -393,7 +364,7 @@ function chapulin4Muerte3(){
     hablar(texto.innerHTML)
     botones.innerHTML = `<button id="btnReiniciar">Empezar de nuevo</button>`
     accionesFinales()
-    btnReiniciar.onclick = () => comienzo()
+    btnReiniciar.onclick = () => accionesFinales(), nombreUsuario()
 }
 
 function chapulin4Avanzar(){
